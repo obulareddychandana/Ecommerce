@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopLogo - Home</title>
+    <link rel="stylesheet" href="index_style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"><img style="width:50px; height:50px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOYo0sFIC899TtKVeUXKCJaJ-AAuooFPxKGg&s"></div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="womens.html">Women's World</a></li>
+            <li><a href="mens.html">Men's World</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+            <li><button class="login-btn" onclick="toggleLogin()">Login</button></li>
+        </ul>
+    </nav>
+
+    <header class="main-heading">
+        <h1>Discover the Latest Trends in Fashion!</h1>
+        <p>Your ultimate destination for style, quality, and elegance.</p>
+    </header>
+
+    <br><br><br>
+    <!-- Featured Sections -->
+    <div class="featured-sections">
+        <div class="featured-section">
+            <h3>Women's World</h3>
+            <img style="width:200px; height:150px;" src="https://img.freepik.com/free-photo/content-women-posing-with-shopping-bags_23-2147669992.jpg?ga=GA1.1.750839239.1729926644&semt=ais_hybrid" alt="Women's World">
+            <p>Explore our latest collections in Women's fashion.</p>
+            <a href="womens.html">Shop Now</a>
+        </div>
+        <div class="featured-section">
+            <h3>Men's World</h3>
+            <img style="width:200px; height:150px;" src="https://img.freepik.com/free-photo/portrait-smiley-young-handsome-man-sunglasses-holding-paper-bag_1150-47131.jpg?ga=GA1.1.750839239.1729926644&semt=ais_hybrid" alt="Men's World">
+            <p>Discover the best styles for Men.</p>
+            <a href="mens.html">Shop Now</a>
+        </div>
+        <div class="featured-section">
+            <h3>Accessories</h3>
+            <img style="width:200px; height:150px;" src="https://img.freepik.com/free-photo/model-career-kit-still-life_23-2150229757.jpg?ga=GA1.1.750839239.1729926644&semt=ais_hybrid" alt="Accessories">
+            <p>Find the perfect accessories for any outfit.</p>
+            <a href="accessories.html">Shop Now</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 ShopCart. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Carousel and Login -->
+    <script>
+        // Simple carousel functionality
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".carousel img");
+
+        setInterval(() => {
+            images[currentIndex].style.transform = "translateX(-100%)";
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.transform = "translateX(0)";
+        }, 3000);
+
+        // Toggle Login/Logout functionality
+        function toggleLogin() {
+            const loginButton = document.querySelector(".login-btn");
+            if (sessionStorage.getItem("isLoggedIn")) {
+                alert("Logged out successfully!");
+                sessionStorage.removeItem("isLoggedIn");
+                loginButton.textContent = "Login";
+            } else {
+                window.location.href = "login.html";
+            }
+        }
+
+        // Set initial login button text
+        if (sessionStorage.getItem("isLoggedIn")) {
+            document.querySelector(".login-btn").textContent = "Logout";
+        }
+    </script>
+
+</body>
+</html>

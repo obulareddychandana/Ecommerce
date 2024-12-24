@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing</title>
+    <link rel="stylesheet" href="bill_style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"><img style="width:50px; height:50px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOYo0sFIC899TtKVeUXKCJaJ-AAuooFPxKGg&s"></div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="womens.html">Women's World</a></li>
+            <li><a href="mens.html">Men's World</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+        </ul>
+    </nav>
+
+    <!-- Billing Information -->
+    <div class="billing-container">
+        <h1>Billing Information</h1>
+        <div id="cartItems" class="cart-items"></div>
+        <h3>Total: $<span id="totalPrice">0.00</span></h3>
+
+        <form class="payment-form">
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment">
+                <option value="credit">Credit Card</option>
+                <option value="debit">Debit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+            <button type="button" class="confirm-button" onclick="confirmOrder()">Confirm Order</button>
+        </form>
+    </div>
+
+    <script>
+        // Retrieve cart from sessionStorage
+        const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+        // Display cart items and calculate total
+        const cartItemsContainer = document.getElementById('cartItems');
+        let total = 0;
+
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `<span>${item.name}</span> <span>$${item.price.toFixed(2)}</span>`;
+            cartItemsContainer.appendChild(itemElement);
+            total += item.price;
+        });
+
+        // Update total price
+        document.getElementById('totalPrice').innerText = total.toFixed(2);
+
+        // Confirm order function
+        function confirmOrder() {
+            alert("Thank you for your order!");
+            sessionStorage.removeItem('cart');  // Clear cart after order confirmation
+            // Optionally redirect to the homepage or another page
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
